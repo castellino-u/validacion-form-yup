@@ -21,6 +21,8 @@ export const Input:  FC <Props>= ({label,name,value,type,handleChange,error} ) =
         <label htmlFor={name}>{label}</label>
         <input type={type} name = {name} onChange={handleChange} value={value}/>
         
+        {error && <span className={style.error} > {error}</span>} 
+        {/* este error esta hecho con un if  */}
     </div>
 
     </>
