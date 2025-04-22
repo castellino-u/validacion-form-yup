@@ -10,9 +10,9 @@
 import * as Yup  from 'yup';
 
 
-const formSchema = Yup.object({
+export const formSchema = Yup.object({
     name: Yup.string().min(3, "Debe tener más de 3 caracteres").required(),
     email: Yup.string().email("Ingrese una dirección de correo válida").required(),
     password: Yup.string().min(6).required(),
-    repeatedPassword : Yup.string().oneOf([Yup.ref("password")],"Las contaseñas deben coincidir") 
+    repeatedPassword : Yup.string().oneOf([Yup.ref("password")],"Las contaseñas deben coincidir").required()
 })
