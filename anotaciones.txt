@@ -1,0 +1,137 @@
+RESUMEN SIMPLIFICADO:
+
+✅ Resumen sobre componentes en React:
+Si quiero que un componente cambie, escale o reciba props, lo convierto en un componente funcional (FC).
+
+Un componente en React es una pieza reutilizable de UI, como botones, formularios, secciones, etc.
+👉 Es cuestión de organización y reutilización.
+
+Los componentes funcionales son los recomendados hoy en día porque:
+
+Son más simples.
+
+Se integran con los hooks (useState, useEffect, etc.).
+
+No necesitás clases desde React 16.8.
+
+Son más limpios en código y rendimiento.
+
+Para usar props en un componente funcional:
+
+Se define una interfaz Props con los datos esperados.
+
+Se aplica al componente con FC<Props>.
+
+Ejemplo:
+
+ts
+Copiar
+Editar
+interface Props {
+  label: string;
+  name: string;
+  value: string;
+  type: string;
+  handleChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
+}
+
+const Input: FC<Props> = ({ label, name, value, type, handleChange }) => {
+  // contenido del input
+};
+🔁 Si un componente debe recibir props y ser reutilizable, sí o sí debe ser funcional.
+
+
+
+------------------------------------------------------------------------------------------------------------------------------------
+ANOTACIONES DETALLADAS: 
+------------------------------------------------------------------------------------------------------------------------------------
+
+Importante:
+    El día que yo quiera que un componente cambie y sea escalable, lo hago componente funcional, listo, no hay más. 
+
+Componentes:
+    Los components los definimos nosotros, siguiendo una línea de trabajo, una filosofía, estos componentes pueden ser la página completa, pueden ser botones, partes, diferentes páginas, pueden ser footers, assies, etc. Es un tema de organización, medio prpio y medio estandarizado. 
+
+    🔹 ¿Qué es un componente en React?
+    Un componente es una pieza reutilizable de interfaz de usuario.
+
+Es como un bloque de construcción: podés armar botones, formularios, menús, tarjetas, lo que quieras, y luego reutilizarlos donde sea necesario.
+
+En resumen:
+    Un componente es una función o clase que devuelve JSX (lo que se va a mostrar en la pantalla).
+
+    🔸 ¿Por qué hacerlos funcionales?
+Hoy en día, los componentes funcionales son la forma recomendada en React porque:
+
+    Son más simples de escribir y entender.
+
+    Se integran mejor con los hooks (useState, useEffect, etc.).
+
+    El rendimiento y la sintaxis son más limpios.
+
+    Desde React 16.8, no necesitás clases para manejar estado o ciclos de vida.
+
+FC: Funtional component. Si queremos reutilizar elementos para que sean funcionales y no tener que estar definiciendo cada elemento para cada cosa en la aplicación, a un elemento lo volvemos un componente funcional con FC. A este componente funcional se le tienen que pasar propiedades, esas Props(propiedades) yo las defino en la interface Props, siempre lleva ese nombre. 
+
+Siempre la forma de definir la interface props es la misma: 
+
+En nuestro ejemplo, las propiedades son esas, pero pueden cambiar, es a modo de ejemplo, pero el resto siempre es igual:
+    
+    interface Props {
+
+        label: string,
+        name: string,
+        value: string,
+        type: string,
+        handleChange : (e : React.ChangeEvent<HTMLInputElement>)=> void;
+
+    }
+    Las propiedades estas son las que le voy a pasar al componente luego, son todas las que yo quiera y son para hacerlo funcional al componente
+
+Después de definir las props del componente funcional, hago justamente funcional al componente Input. 
+
+Input: FC<Props> ---------------->Siempre se hace así, la estructura es la misma.
+    
+    export const Input:  FC <Props>= ({label,name,value,type,handleChange,error} ) => {
+    //a dentro hay que poner todo lo que va a devolver el componente
+
+
+    return (
+    <>
+    <div></div>
+    </>
+    );
+    };
+
+Si queremos que un componente cambie, reciba props y todo eso, no queda otra que volverlo un componente funcional:
+Ej:
+Input: Componente que reciba props como label, name, value, type, 
+handleChange, error.  ------> Si me dice que quiere que el input reciba props, no hay otra que volverlo componente funcional. 
+--------------------------------------------------------------------------------------------------------------------------------
+Ya toda la estructura quedaría así:
+----------------------------------------------------------------------------------------------------------------------------------
+
+
+import { FC } from 'react';
+import style from './Input.module.css'
+
+//esta interface va afuera para que se lo pueda aplicar al input
+interface Props {
+    label: string,
+    name: string,
+    value: string,
+    type: string,
+    handleChange : (e : React.ChangeEvent<HTMLInputElement>)=> void;
+    error? : string //le ponemos el "?" para definir que sea opcional
+}
+//ahora hay que tipar al input para que sea un componente funcional
+export const Input:  FC <Props>= ({label,name,value,type,handleChange,error} ) => {
+    //a dentro hay que poner todo lo que va a devolver el componente
+
+
+    return (
+    <>
+    <div></div>
+    </>
+    );
+};
